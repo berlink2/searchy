@@ -2,6 +2,8 @@ import json
 import os
 from typing import Any
 
+DEFAULT_ALPHA = 0.5
+RRF_K = 60
 DEFAULT_SEARCH_LIMIT = 5
 DOCUMENT_PREVIEW_LENGTH = 100
 SCORE_PRECISION = 3
@@ -36,7 +38,7 @@ def load_stopwords() -> list[str]:
 
 
 def format_search_result(
-    doc_id: str, title: str, document: str, score: float, **metadata: Any
+    doc_id: str, title: str, score: float, **metadata: Any
 ) -> dict[str, Any]:
     """Create standardized search result
 
@@ -53,7 +55,7 @@ def format_search_result(
     return {
         "id": doc_id,
         "title": title,
-        "document": document,
+        # "document": document,
         "score": round(score, SCORE_PRECISION),
         "metadata": metadata if metadata else {},
     }
